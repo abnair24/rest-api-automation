@@ -20,7 +20,7 @@ public class EmployeeDeletionTest extends EmployeeTestBase {
         };
     }
 
-    @Test(dataProvider = "deleteData", groups = "SMOKE")
+    @Test(dataProvider = "deleteData", groups = {"SMOKE","EMPLOYEE"})
     public void verifyEmployeeDeleteTest(String name, String salary, String age) throws Exception {
 
         CreateEmployeeRequest createEmployeeRequest = new CreateEmployeeRequestBuilder()

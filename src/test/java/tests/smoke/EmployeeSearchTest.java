@@ -21,7 +21,7 @@ public class EmployeeSearchTest extends EmployeeTestBase {
     }
 
 
-    @Test(dataProvider = "newEmployeeData", groups = "SMOKE")
+    @Test(dataProvider = "newEmployeeData", groups = {"SMOKE","EMPLOYEE"})
     public void verifyEmployeeSearchById(String name, String salary, String age) throws Exception {
 
         CreateEmployeeRequest createEmployeeRequest = new CreateEmployeeRequestBuilder()
@@ -40,7 +40,7 @@ public class EmployeeSearchTest extends EmployeeTestBase {
         getEmployeeByIdResponse.assertEmployeeData(String.valueOf(context.getId()), name, salary, age);
     }
 
-    @Test(groups = "SMOKE")
+    @Test(groups = {"SMOKE","EMPLOYEE"})
     public void verifyAllEmployeesTest() throws Exception {
 
         GetEmployeesResponse response = employeeClientWrapper.getEmployees();

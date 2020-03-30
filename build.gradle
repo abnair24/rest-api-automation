@@ -22,7 +22,7 @@ tasks.withType(Test) {
 
 task runTests(type: Test) {
     useTestNG {
-        parallel = "methods"
+        parallel = "classes"
         threadCount = Integer.parseInt(System.getProperty('parallel', '3'))
         useDefaultListeners = false
         listeners << 'org.uncommons.reportng.HTMLReporter'

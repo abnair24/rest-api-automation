@@ -22,7 +22,7 @@ public class EmployeeCreationTest extends EmployeeTestBase {
     }
 
 
-    @Test(dataProvider = "employeeData", groups = "SMOKE")
+    @Test(dataProvider = "employeeData", groups = {"SMOKE","EMPLOYEE"})
     public void verifyEmployeeCreation(String name, String salary, String age) throws Exception {
 
         CreateEmployeeRequest createEmployeeRequest = new CreateEmployeeRequestBuilder()

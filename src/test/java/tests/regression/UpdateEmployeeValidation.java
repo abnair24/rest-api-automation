@@ -15,7 +15,7 @@ import testBase.EmployeeTestBase;
 
 public class UpdateEmployeeValidation extends EmployeeTestBase {
 
-    @Test(groups = "REGRESSION")
+    @Test(groups = {"REGRESSION","EMPLOYEE"})
     public void nonExistentEmployeeUpdation() throws Exception {
 
         UpdateEmployeeRequest updateEmployeeRequest = new UpdateEmployeeRequestBuilder()
@@ -24,7 +24,7 @@ public class UpdateEmployeeValidation extends EmployeeTestBase {
                 .withSalary("121212")
                 .build();
 
-        UpdateEmployeeResponse updateEmployeeResponse = employeeClientWrapper.updateEmployee(updateEmployeeRequest, 1001);
+        UpdateEmployeeResponse updateEmployeeResponse = employeeClientWrapper.updateEmployee(updateEmployeeRequest, 101);
         updateEmployeeResponse.assertInvalideUpdateEmployee();
     }
 
@@ -37,7 +37,7 @@ public class UpdateEmployeeValidation extends EmployeeTestBase {
         };
     }
 
-    @Test(dataProvider = "updateData", groups = "REGRESSION")
+    @Test(dataProvider = "updateData", groups = {"REGRESSION","EMPLOYEE"})
     public void emptyDataUpdation(String name, String salary, String age) throws Exception {
         CreateEmployeeRequest createEmployeeRequest = new CreateEmployeeRequestBuilder()
                 .withAge(age)

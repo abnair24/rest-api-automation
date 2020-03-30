@@ -24,7 +24,7 @@ public class EmployeeUpdationTest extends EmployeeTestBase {
         };
     }
 
-    @Test(dataProvider = "updateData", groups = "SMOKE")
+    @Test(dataProvider = "updateData", groups = {"SMOKE","EMPLOYEE"})
     public void verifyEmployeeUpdateTest(String name, String salary, String age, String updateName) throws Exception {
 
         CreateEmployeeRequest createEmployeeRequest = new CreateEmployeeRequestBuilder()
@@ -49,6 +49,6 @@ public class EmployeeUpdationTest extends EmployeeTestBase {
 
         GetEmployeeByIdResponse getEmployeeByIdResponse = employeeClientWrapper.getEmployeeById(context.getId());
 
-        Assert.assertEquals(getEmployeeByIdResponse.getData().getEmployee_name(), updateName);
+        Assert.assertEquals(getEmployeeByIdResponse.getData().get("employee_name").textValue(), updateName);
     }
 }

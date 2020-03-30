@@ -9,7 +9,7 @@ import testBase.EmployeeTestBase;
 
 public class SearchEmployeeValidation extends EmployeeTestBase {
 
-    @Test(groups = "REGRESSION")
+    @Test(groups = {"REGRESSION","EMPLOYEE"})
     public void invalidIdSearchTest() throws Exception {
 
         GetEmployeeByIdResponse getEmployeeByIdResponse = employeeClientWrapper.getEmployeeById(1001);
