@@ -12,8 +12,25 @@ repositories {
     mavenCentral()
 }
 
-test {
-    useTestNG()
+tasks.withType(Test) {
+    systemProperties = [
+            env: System.getProperty('env', 'qa'),
+            parallel: System.getProperty('parallel', '1')
+            //slackNotif: System.getProperty('slackNotif')
+     ]
+}
+
+task runTests(type: Test) {
+    useTestNG {
+        parallel = "methods"
+        threadCount = Integer.parseInt(System.getProperty('parallel', '3'))
+        useDefaultListeners = false
+        listeners << 'org.uncommons.reportng.HTMLReporter'
+        listeners << 'org.uncommons.reportng.JUnitXMLReporter'
+//        listeners << 'slack.SlackListener'
+        includeGroups System.getProperty('tag', 'DEFAULT')
+        outputDirectory = file("$buildDir/" + System.getProperty('tag', 'DEFAULT'))
+    }
 }
 
 dependencies {

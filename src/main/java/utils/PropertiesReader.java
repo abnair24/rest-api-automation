@@ -10,7 +10,7 @@ public class PropertiesReader {
 
     public PropertiesReader() {
         properties = new Properties();
-        String propertiesFilePath =  "qa.properties";
+        String propertiesFilePath =  getEnvName() +".properties";
 
         InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(propertiesFilePath);
         try {
@@ -21,7 +21,13 @@ public class PropertiesReader {
     }
 
     private String getEnvName() {
-        return System.getProperty("env");
+
+        String env = System.getProperty("env");
+
+        if(null == env) {
+            env = "qa";
+        }
+        return env;
 
     }
 
