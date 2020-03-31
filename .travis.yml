@@ -10,7 +10,7 @@ branches:
     - master
 
 before_install:
-  - gradle wrapper
+  - gradle gwrapper
   - chmod +x gradlew
 
 before_cache:
