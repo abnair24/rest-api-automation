@@ -14,3 +14,4 @@ classes/
 .settings/*
 bin/*
 generated/
+lombok.config
