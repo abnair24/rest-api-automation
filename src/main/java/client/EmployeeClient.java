@@ -4,7 +4,6 @@ package client;
 import io.restassured.http.ContentType;
 
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 import org.testng.Reporter;
 import services.createEmployee.CreateEmployeeRequest;
 import services.createEmployee.CreateEmployeeResponse;
@@ -18,7 +17,7 @@ import utils.Helper;
 
 import static io.restassured.RestAssured.given;
 
-public class EmployeeClient extends BaseClient {
+public class EmployeeClient  {
 
     public CreateEmployeeResponse createEmployee(CreateEmployeeRequest createEmployeeRequest) {
 
@@ -143,6 +142,4 @@ public class EmployeeClient extends BaseClient {
 
         return getEmployeesResponse;
     }
-
-
 }

@@ -15,19 +15,30 @@ repositories {
 tasks.withType(Test) {
     systemProperties = [
             env: System.getProperty('env', 'qa'),
-            parallel: System.getProperty('parallel', '1')
-            //slackNotif: System.getProperty('slackNotif')
+            parallel: System.getProperty('parallel', '1'),
+            slackNotif: System.getProperty('slackNotif')
      ]
 }
 
-task runTests(type: Test) {
+task runTestsParallel(type: Test) {
     useTestNG {
         parallel = "classes"
         threadCount = Integer.parseInt(System.getProperty('parallel', '3'))
         useDefaultListeners = false
         listeners << 'org.uncommons.reportng.HTMLReporter'
         listeners << 'org.uncommons.reportng.JUnitXMLReporter'
-//        listeners << 'slack.SlackListener'
+        listeners << 'slack.SlackListner'
+        includeGroups System.getProperty('tag', 'DEFAULT')
+        outputDirectory = file("$buildDir/" + System.getProperty('tag', 'DEFAULT'))
+    }
+}
+
+task runTests(type: Test) {
+    useTestNG {
+        useDefaultListeners = false
+        listeners << 'org.uncommons.reportng.HTMLReporter'
+        listeners << 'org.uncommons.reportng.JUnitXMLReporter'
+        listeners << 'slack.SlackListner'
         includeGroups System.getProperty('tag', 'DEFAULT')
         outputDirectory = file("$buildDir/" + System.getProperty('tag', 'DEFAULT'))
     }
