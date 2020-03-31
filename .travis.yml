@@ -10,7 +10,7 @@ branches:
     - master
 
 before_install:
-  - cd rest-api-automation
+  - cd abnair24/rest-api-automation
   - chmod +x gradlew
 
 before_cache:
