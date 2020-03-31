@@ -1,7 +1,6 @@
-sudo: true
+sudo: false
 dist: trusty
 os: linux
-install: true
 
 language: java
 jdk: oraclejdk8
@@ -11,11 +10,11 @@ branches:
     - master
 
 before_install:
+  - cd rest-api-automation
   - chmod +x gradlew
 
 before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+  - rm -rf  $HOME/.gradle/caches/modules-2/modules-2.lock
 
 cache:
   directories:
@@ -25,6 +24,6 @@ cache:
 jobs:
   include:
     - stage: smoke
-      script: ./gradlew -g /cache/.gradle clean runTests -Dtag=SMOKE -DslackNotif=automation
+      script: gradle clean runTests -Dtag=SMOKE -DslackNotif=automation
     - stage: regression
-      script: ./gradlew -g /cache/.gradle clean runTestsParallel -Dtag=REGRESSION -DslackNotif=automation
+      script: gradle clean runTestsParallel -Dtag=REGRESSION -DslackNotif=automation
