@@ -1,5 +1,5 @@
 sudo: false
-dist: xenial
+dist: trusty
 os: linux
 
 language: java
@@ -10,7 +10,11 @@ branches:
     - master
 
 before_install:
-  - gradle gwrapper
+  - wget http://services.gradle.org/distributions/gradle-6.3-bin.zip
+  - unzip -qq gradle-6.3-bin.zip
+  - export GRADLE_HOME=$PWD/gradle-6.3
+  - export PATH=$GRADLE_HOME/bin:$PATH
+  - gradle -v
   - chmod +x gradlew
 
 before_cache:
