@@ -1,4 +1,4 @@
-# rest-api-automation
+# rest-api-automation  [![Build Status](https://travis-ci.org/abnair24/rest-api-automation.svg?branch=master)](https://travis-ci.org/abnair24/rest-api-automation)
 
 ## Introduction
 
