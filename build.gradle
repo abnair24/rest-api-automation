@@ -25,9 +25,9 @@ task runTestsParallel(type: Test) {
         parallel = "classes"
         threadCount = Integer.parseInt(System.getProperty('parallel', '3'))
         useDefaultListeners = false
+        listeners << 'slack.SlackListner'
         listeners << 'org.uncommons.reportng.HTMLReporter'
         listeners << 'org.uncommons.reportng.JUnitXMLReporter'
-        listeners << 'slack.SlackListner'
         includeGroups System.getProperty('tag', 'DEFAULT')
         outputDirectory = file("$buildDir/" + System.getProperty('tag', 'DEFAULT'))
     }

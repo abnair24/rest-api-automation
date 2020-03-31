@@ -1,6 +1,7 @@
-sudo: false
+sudo: true
 dist: trusty
 os: linux
+install: true
 
 language: java
 jdk: oraclejdk8
@@ -9,6 +10,9 @@ branches:
   only:
     - master
 
+before_install:
+  - chmod +x gradlew
+
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -16,9 +20,7 @@ before_cache:
 cache:
   directories:
     - $HOME/.gradle/caches/
-
-before_install:
-  - chmod +x gradlew
+    - $HOME/.gradle/wrapper/
 
 jobs:
   include:
