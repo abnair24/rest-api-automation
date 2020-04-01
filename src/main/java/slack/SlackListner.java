@@ -17,6 +17,7 @@ public class SlackListner extends TestListenerAdapter {
         String slackChannel = slackNotification;
 
         Reporter.log(slackChannel,true);
+        Reporter.log(tags,true);
         if(!slackChannel.isEmpty()) {
             Reporter.log("Sending Notifications to slack",true);
 
@@ -27,7 +28,8 @@ public class SlackListner extends TestListenerAdapter {
             Entities attachments = new SlackNotificationBuilder()
                     .withFallback(tags)
                     .withColor(status)
-                    .withAuthorName("Aswathy")
+                    .withTitle("REST-API Automation Test Results",tags)
+                    .withAuthorName("ABN")
                     .withPassValue(String.valueOf(pass))
                     .withFailedValue(String.valueOf(fail))
                     .build();

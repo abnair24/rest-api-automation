@@ -7,7 +7,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class Attachment {
+public class Attachments {
 
     public String fallback;
     public String color;

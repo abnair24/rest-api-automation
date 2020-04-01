@@ -6,26 +6,25 @@ import java.util.List;
 public class SlackNotificationBuilder {
 
     private Entities entities;
-    private List<Attachment> request;
+    private List<Attachments> request;
     private List<Fields> fields;
-    private Attachment attachment;
+    private Attachments attachments;
     private Fields passField, failedField;
 
     public SlackNotificationBuilder() {
         entities = new Entities();
         request = new ArrayList<>();
         fields = new ArrayList<>();
-        attachment = new Attachment();
+        attachments = new Attachments();
         passField = new Fields();
         failedField = new Fields();
 
-        attachment.setPretext("Slack Notifications for Automation");
-        attachment.setText("This repo is for API backend automation for Employee Service");
-        attachment.setTitle("API Automation");
-        attachment.setImage_url("https://unsplash.com/photos/VGR_ReUCqNw");
-        attachment.setThumb_url("https://www.pinclipart.com/maxpin/iRJwbio/");
-        attachment.setFooter("Slack API");
-        attachment.setFooter_icon("https://platform.slack-edge.com/img/default_application_icon.png");
+        attachments.setPretext("Slack Notifications for Automation");
+        attachments.setText("This repo is for API backend automation for Employee Service");
+        attachments.setThumb_url("https://images.unsplash.com/photo-1531214159280-079b95d26139?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
+        attachments.setImage_url("https://www.pinclipart.com/picdir/big/340-3402688_thumbnail-image-tech-ontap-podcast-clipart.png");
+        attachments.setFooter("Slack API");
+        attachments.setFooter_icon("https://platform.slack-edge.com/img/default_application_icon.png");
 
         passField.setTitle("Pass");
         passField.setShorta(true);
@@ -35,23 +34,23 @@ public class SlackNotificationBuilder {
 
 
     public SlackNotificationBuilder withFallback(String fallback) {
-        attachment.setFallback(String.format("%s Tests", fallback));
+        attachments.setFallback(String.format("%s Tests", fallback));
         return this;
     }
 
     public SlackNotificationBuilder withColor(String color) {
-        attachment.setColor(color);
+        attachments.setColor(color);
         return this;
     }
 
     public SlackNotificationBuilder withAuthorName(String authorName) {
-        attachment.setAuthor_name(authorName);
+        attachments.setAuthor_name(authorName);
         return this;
     }
 
     public SlackNotificationBuilder withTitle(String url, String tags) {
-        String title = String.format("<%s|%S> Tests", url, tags);
-        attachment.setTitle(title);
+        String title = String.format("%s | %S ", url, tags);
+        attachments.setTitle(title);
         return this;
     }
 
@@ -68,9 +67,9 @@ public class SlackNotificationBuilder {
     public Entities build() {
         fields.add(passField);
         fields.add(failedField);
-        attachment.setFields(fields);
-        request.add(attachment);
-        entities.setAttachment(request);
+        attachments.setFields(fields);
+        request.add(attachments);
+        entities.setAttachments(request);
         return entities;
     }
 }

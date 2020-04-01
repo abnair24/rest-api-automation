@@ -10,5 +10,5 @@ import java.util.List;
 @Setter
 public class Entities {
 
-    List<Attachment> attachment;
+    List<Attachments> attachments;
 }
