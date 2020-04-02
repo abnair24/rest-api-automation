@@ -26,7 +26,8 @@ tasks.withType(Test) {
     systemProperties = [
             env: System.getProperty('env', 'qa'),
             parallel: System.getProperty('parallel', '1'),
-            slackNotif: System.getProperty('slackNotif')
+            slackNotif: System.getProperty('slackNotif'),
+            token: System.getProperty('token')
      ]
 }
 

@@ -5,21 +5,21 @@ import io.restassured.response.Response;
 import org.testng.ITestContext;
 import org.testng.Reporter;
 import org.testng.TestListenerAdapter;
+import utils.Properties;
 import utils.SlackWebHook;
 
 public class SlackListner extends TestListenerAdapter {
 
-    public static final String slackNotification = null == System.getProperty("slackNotif") ? "" : System.getProperty("slackNotif");
-    public static final String tags = null == System.getProperty("tag") ? "" : System.getProperty("tag");
-
     @Override
     public void onFinish(ITestContext testContext) {
-        String slackChannel = slackNotification;
 
-        Reporter.log(slackChannel,true);
-        Reporter.log(tags,true);
-        if(!slackChannel.isEmpty()) {
-            Reporter.log("Sending Notifications to slack",true);
+        String slackChannel = Properties.SLACK_NOTIFICATION;
+        String tags = Properties.TAGS;
+
+        Reporter.log(slackChannel, true);
+        Reporter.log(tags, true);
+        if (!slackChannel.isEmpty()) {
+            Reporter.log("Sending Notifications to slack", true);
 
             int pass = testContext.getPassedTests().size();
             int fail = testContext.getFailedTests().size();
@@ -28,7 +28,7 @@ public class SlackListner extends TestListenerAdapter {
             Entities attachments = new SlackNotificationBuilder()
                     .withFallback(tags)
                     .withColor(status)
-                    .withTitle("REST-API Automation Test Results",tags)
+                    .withTitle("REST-API Automation Test Results", tags)
                     .withAuthorName("ABN")
                     .withPassValue(String.valueOf(pass))
                     .withFailedValue(String.valueOf(fail))
